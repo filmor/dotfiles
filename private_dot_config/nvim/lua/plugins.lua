@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
       "hrsh7th/cmp-nvim-lsp"
     },
     config = function()
-      require'cmp'.setup {
+      require('cmp').setup {
         sources = {
           { name = 'nvim_lsp' }
         }
@@ -28,7 +28,32 @@ return require('packer').startup(function(use)
     end
   }
 
-  use 'mhartington/formatter.nvim'
+  use {
+    'mhartington/formatter.nvim',
+    config = function()
+      local util = require "formatter.util"
+
+      require('formatter').setup {
+        logging = true,
+        log_level = 2,
+        filetype = {
+          erlang = function()
+            return {
+                name = "erlfmt",
+                exe = "escript",
+                args = {
+                  "rebar3",
+                  "fmt",
+                  "-",
+                },
+                stdin = true
+              }
+            end,
+          python = require("formatter.filetypes.python").black
+        }
+      }
+    end
+  }
 
   use 'editorconfig/editorconfig-vim'
 
@@ -111,7 +136,11 @@ return require('packer').startup(function(use)
     run = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { "c", "lua", "rust", "erlang", "elixir", "typescript" },
+        ensure_installed = { "c", "c_sharp", "lua", "rust", "erlang", "elixir", "typescript" },
+        highlight = { enable = true },
+        indent = { enable = true },
+        incremental_selection = { enable = true },
+        textobjects = { enable = true },
       }
     end
   }
