@@ -17,10 +17,36 @@ return require('packer').startup(function(use)
       "hrsh7th/cmp-nvim-lsp"
     },
     config = function()
-      require('cmp').setup {
+      local has_words_before = require('util').has_words_before
+      local cmp = require('cmp')
+
+      cmp.setup {
         sources = {
           { name = 'nvim_lsp' }
-        }
+        },
+        mapping = {
+          ['<C-Space>'] = cmp.mapping.complete(),
+
+          ['<Tab>'] = function(fallback)
+            if not cmp.select_next_item() then
+              if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                cmp.complete()
+              else
+                fallback()
+              end
+            end
+          end,
+
+          ['<S-Tab>'] = function(fallback)
+            if not cmp.select_prev_item() then
+              if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                cmp.complete()
+              else
+                fallback()
+              end
+            end
+          end,
+        },
       }
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -31,8 +57,6 @@ return require('packer').startup(function(use)
   use {
     'mhartington/formatter.nvim',
     config = function()
-      local util = require "formatter.util"
-
       require('formatter').setup {
         logging = true,
         log_level = 2,
@@ -52,6 +76,9 @@ return require('packer').startup(function(use)
           python = require("formatter.filetypes.python").black
         }
       }
+
+      local set_keymap = require('util').set_keymap
+      set_keymap('n', '<leader>F', ':FormatWrite<CR>')
     end
   }
 
