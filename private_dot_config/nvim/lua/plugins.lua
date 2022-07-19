@@ -7,6 +7,8 @@ end
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
+  use 'kazhala/close-buffers.nvim'
+
   use 'sainnhe/gruvbox-material'
 
   use {
@@ -145,14 +147,33 @@ return require('packer').startup(function(use)
       require("telescope").load_extension("ui-select")
 
       local set_keymap = require("util").set_keymap
-      set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
+      set_keymap("n", "<leader>h", "<cmd>Telescope keymaps<cr>")
+
+      set_keymap("n", "<leader>fd", "<cmd>Telescope find_files<cr>")
+      set_keymap("n", "<leader>ff", "<cmd>Telescope git_files<cr>")
       set_keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
       set_keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
       set_keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
 
-      set_keymap("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>")
-      set_keymap("n", "<leader>fs", "<cmd>Telescope lsp_workspace_symbols<cr>")
-      set_keymap("n", "<leader>fd", "<cmd>Telescope lsp_definitions<cr>")
+      set_keymap("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>")
+      set_keymap("n", "<leader>lw", "<cmd>Telescope lsp_workspace_symbols<cr>")
+      set_keymap("n", "<leader>ld", "<cmd>Telescope lsp_definitions<cr>")
+      set_keymap("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>")
+
+      set_keymap("n", "<leader>ts", "<cmd>Telescope treesitter<cr>")
+
+      set_keymap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>")
+      set_keymap("n", "<leader>gb", "<cmd>Telescope git_bcommits<cr>")
+      set_keymap("n", "<leader>gt", "<cmd>Telescope git_branches<cr>")
+      set_keymap("n", "<leader>gs", "<cmd>Telescope git_status<cr>")
+    end
+  }
+
+  use {
+    'TimUntersberger/neogit',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require("neogit").setup {}
     end
   }
 
@@ -163,7 +184,7 @@ return require('packer').startup(function(use)
     run = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { "c", "c_sharp", "lua", "rust", "erlang", "elixir", "typescript" },
+        ensure_installed = { "c", "c_sharp", "lua", "rust", "python", "erlang", "elixir", "typescript" },
         highlight = { enable = true },
         indent = { enable = true },
         incremental_selection = { enable = true },
