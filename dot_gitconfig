@@ -1,0 +1,7 @@
+[user]
+	email = filmor@gmail.com
+	name = Benedikt Reinartz
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
