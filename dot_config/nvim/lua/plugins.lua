@@ -19,6 +19,7 @@ return require('packer').startup(function(use)
       "hrsh7th/cmp-nvim-lsp"
     },
     config = function()
+      local set_keymap = require("util").set_keymap
       local has_words_before = require('util').has_words_before
       local cmp = require('cmp')
 
@@ -53,6 +54,8 @@ return require('packer').startup(function(use)
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+      set_keymap("n", "<leader>ll", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>")
     end
   }
 
@@ -120,12 +123,11 @@ return require('packer').startup(function(use)
       require("trouble").setup {}
 
       local set_keymap = require("util").set_keymap
-      set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>")
-      set_keymap("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>")
-      set_keymap("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>")
-      set_keymap("n", "<leader>xl", "<cmd>Trouble loclist<cr>")
-      set_keymap("n", "<leader>xq", "<cmd>Trouble quickfix<cr>")
-      set_keymap("n", "gR", "<cmd>Trouble lsp_references<cr>")
+      set_keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
+      set_keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
+      set_keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>")
+      set_keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
+      set_keymap("n", "<leader>xx", "<cmd>TroubleToggle lsp_references<cr>")
     end
   }
 
@@ -169,14 +171,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {
-    'TimUntersberger/neogit',
-    requires = 'nvim-lua/plenary.nvim',
-    config = function()
-      require("neogit").setup {}
-    end
-  }
-
   use "lukas-reineke/indent-blankline.nvim"
 
   use {
@@ -206,6 +200,16 @@ return require('packer').startup(function(use)
     'j-hui/fidget.nvim',
     config = function()
       require('fidget').setup {}
+    end
+  }
+
+  use {
+    "akinsho/toggleterm.nvim",
+    config = function()
+      require("toggleterm").setup()
+      local set_keymap = require("util").set_keymap
+      set_keymap("n", "<leader><cr>", "<cmd>ToggleTerm direction=float<cr>")
+      set_keymap("t", "<Esc>", "<leader><C-\\><C-n>")
     end
   }
 
