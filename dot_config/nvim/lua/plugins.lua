@@ -206,10 +206,11 @@ return require('packer').startup(function(use)
   use {
     "akinsho/toggleterm.nvim",
     config = function()
-      require("toggleterm").setup()
-      local set_keymap = require("util").set_keymap
-      set_keymap("n", "<leader><cr>", "<cmd>ToggleTerm direction=float<cr>")
-      set_keymap("t", "<Esc>", "<leader><C-\\><C-n>")
+      require("toggleterm").setup {
+        open_mapping = "<C-]>",
+        shell = "fish",
+        direction = "tab"
+      }
     end
   }
 
