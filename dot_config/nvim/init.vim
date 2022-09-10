@@ -15,7 +15,6 @@ set nu
 set et
 set nocompatible
 set backspace=indent,eol,start
-set cin
 set cc=80
 set t_Co=256
 set noeb
@@ -41,16 +40,14 @@ nnoremap <SPACE> <Nop>
 let mapleader=" "
 set showcmd
 
-nnoremap <leader>e :NvimTreeToggle<CR>
-
-
 augroup filetype
     au BufNewFile,BufRead *.cpp,*.cc,*.cxx,*.C set syntax=cpp11
     au BufNewFile,BufRead *.gplot,*.gp,*.plot,plot setf gnuplot
     au BufNewFile,BufRead *.chords setf chordpro
     au BufNewFile,BufRead *.escript,*.script setf erlang
-    au FileType javascript setl sts=2 sw=2
-    au FileType lua setl sts=2 sw=2
+    au FileType javascript setl sts=2 sw=2 ts=2
+    au FileType lua setl sts=2 sw=2 ts=2
+    au FileType elixir setl sts=2 sw=2 ts=2
 augroup end
 
 autocmd GUIEnter * set vb t_vb=
@@ -81,5 +78,6 @@ set colorcolumn=80
 set termguicolors
 colorscheme gruvbox-material
 
+" filetype plugin indent on
 syn on
 " retab

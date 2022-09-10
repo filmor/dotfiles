@@ -13,11 +13,10 @@ return require('packer').startup(function(use)
 
   use {
     "neovim/nvim-lspconfig",
-    requires = {
-      "williamboman/nvim-lsp-installer",
-      "hrsh7th/nvim-cmp",
-      "hrsh7th/cmp-nvim-lsp"
-    },
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-nvim-lsp",
     config = function()
       local set_keymap = require("util").set_keymap
       local has_words_before = require('util').has_words_before
@@ -78,7 +77,11 @@ return require('packer').startup(function(use)
                 stdin = true
               }
             end,
-          python = require("formatter.filetypes.python").black
+          elixir = require("formatter.filetypes.elixir").mixformat,
+          python = require("formatter.filetypes.python").black,
+          rust = require("formatter.filetypes.rust").rustfmt,
+          cs = require("formatter.filetypes.cs").dotnetformat,
+          json = require("formatter.filetypes.json").jq,
         }
       }
 
@@ -98,7 +101,33 @@ return require('packer').startup(function(use)
     'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
-      require('nvim-tree').setup({})
+      require('nvim-tree').setup {
+        hijack_cursor = true,
+        view = {
+          float = {
+            -- enable = true,
+            open_win_config = {
+              row = 4,
+              col = 4
+            }
+          },
+        },
+        diagnostics = {
+          enable = true
+        },
+        renderer = {
+          group_empty = true,
+          highlight_opened_files = "icon",
+        },
+        filters = {
+          dotfiles = true,
+        },
+      }
+
+      local set_keymap = require("util").set_keymap
+
+      -- set_keymap("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
+      set_keymap("n", "<leader>e", "<cmd>NvimTreeFindFile<cr>")
     end
   }
 
@@ -171,16 +200,33 @@ return require('packer').startup(function(use)
     end
   }
 
-  use "lukas-reineke/indent-blankline.nvim"
+  -- use "lukas-reineke/indent-blankline.nvim"
 
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { "c", "c_sharp", "lua", "rust", "python", "erlang", "elixir", "typescript" },
-        highlight = { enable = true },
-        indent = { enable = true },
+        ensure_installed = {
+          "c",
+          "c_sharp",
+          "lua",
+          "rust",
+          "python",
+          "erlang",
+          "elixir",
+          "heex",
+          "html",
+          "eex",
+          "json",
+          "toml",
+          "typescript"
+        },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = true,
+        },
+        indent = { disable = true },
         incremental_selection = { enable = true },
         textobjects = { enable = true },
       }
@@ -196,12 +242,12 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {
-    'j-hui/fidget.nvim',
-    config = function()
-      require('fidget').setup {}
-    end
-  }
+  -- use {
+  --   'j-hui/fidget.nvim',
+  --   config = function()
+  --     require('fidget').setup {}
+  --   end
+  -- }
 
   use {
     "akinsho/toggleterm.nvim",
@@ -210,6 +256,15 @@ return require('packer').startup(function(use)
         open_mapping = "<C-]>",
         shell = "fish",
         direction = "tab"
+      }
+    end
+  }
+
+  use {
+    "mhanberg/elixir.nvim",
+    requires = {"neovim/nvim-lspconfig", "nvim-lua/plenary.nvim"},
+    config = function()
+      require("elixir").setup {
       }
     end
   }
