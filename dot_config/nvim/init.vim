@@ -48,6 +48,7 @@ augroup filetype
     au FileType javascript setl sts=2 sw=2 ts=2
     au FileType lua setl sts=2 sw=2 ts=2
     au FileType elixir setl sts=2 sw=2 ts=2
+    au FileType xml setl sts=2 sw=2 ts=2
 augroup end
 
 autocmd GUIEnter * set vb t_vb=
