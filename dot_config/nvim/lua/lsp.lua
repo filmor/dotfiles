@@ -69,7 +69,6 @@ cmp.setup {
   },
 }
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+require('cmp_nvim_lsp').default_capabilities()
 
 set_keymap("n", "<leader>ll", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>")
