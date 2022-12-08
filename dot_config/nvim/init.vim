@@ -51,6 +51,10 @@ augroup filetype
     au FileType xml setl sts=2 sw=2 ts=2
 augroup end
 
+augroup reloadqueries
+    au BufWrite *.scm lua require'nvim-treesitter.query'.invalidate_query_cache()
+augroup end
+
 autocmd GUIEnter * set vb t_vb=
 
 let html_use_css=1
@@ -80,5 +84,5 @@ set termguicolors
 colorscheme gruvbox-material
 
 " filetype plugin indent on
-syn on
+" syn on
 " retab

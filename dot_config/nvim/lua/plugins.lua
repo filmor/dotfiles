@@ -20,12 +20,18 @@ return require('packer').startup(function(use)
 
   use {
     "neovim/nvim-lspconfig",
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "hrsh7th/nvim-cmp",
-    "hrsh7th/cmp-nvim-lsp",
+    requires = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "hrsh7th/nvim-cmp",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/vim-vsnip",
+      "hrsh7th/vim-vsnip-integ",
+      'kosayoda/nvim-lightbulb',
+    },
     config = function()
-      -- All in lsp.lua
+      require('nvim-lightbulb').setup({autocmd = {enabled = true}})
+      -- All remaining in lsp.lua
     end
   }
 
@@ -50,12 +56,18 @@ return require('packer').startup(function(use)
             end,
           elixir = require("formatter.filetypes.elixir").mixformat,
           python = require("formatter.filetypes.python").black,
-          rust = require("formatter.filetypes.rust").rustfmt,
+          rust = function()
+            return {
+              name = "rustfmt",
+              exe = "rustfmt",
+              stdin = true,
+              args = { "--edition", "2021" }
+            }
+          end,
           cs = require("formatter.filetypes.cs").dotnetformat,
           json = require("formatter.filetypes.json").jq,
         }
       }
-
       local set_keymap = require('util').set_keymap
       set_keymap('n', '<leader>F', ':FormatWrite<CR>')
     end
@@ -117,6 +129,15 @@ return require('packer').startup(function(use)
   }
 
   use {
+      'saecki/crates.nvim',
+      tag = 'v0.3.0',
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = function()
+          require('crates').setup()
+      end,
+  }
+
+  use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
@@ -151,8 +172,7 @@ return require('packer').startup(function(use)
       local set_keymap = require("util").set_keymap
       set_keymap("n", "<leader>h", "<cmd>Telescope keymaps<cr>")
 
-      set_keymap("n", "<leader>fd", "<cmd>Telescope find_files<cr>")
-      set_keymap("n", "<leader>ff", "<cmd>Telescope git_files<cr>")
+      set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
       set_keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
       set_keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
       set_keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
@@ -168,6 +188,7 @@ return require('packer').startup(function(use)
       set_keymap("n", "<leader>gb", "<cmd>Telescope git_bcommits<cr>")
       set_keymap("n", "<leader>gt", "<cmd>Telescope git_branches<cr>")
       set_keymap("n", "<leader>gs", "<cmd>Telescope git_status<cr>")
+      set_keymap("n", "<leader>gf", "<cmd>Telescope git_files<cr>")
     end
   }
 
@@ -195,13 +216,17 @@ return require('packer').startup(function(use)
         },
         highlight = {
           enable = true,
-          additional_vim_regex_highlighting = true,
+          additional_vim_regex_highlighting = false,
         },
         indent = { disable = true },
         incremental_selection = { enable = true },
         textobjects = { enable = true },
       }
     end
+  }
+
+  use {
+    'nvim-treesitter/playground'
   }
 
   use {
@@ -213,13 +238,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- use {
-  --   'j-hui/fidget.nvim',
-  --   config = function()
-  --     require('fidget').setup {}
-  --   end
-  -- }
-
   use {
     "akinsho/toggleterm.nvim",
     config = function()
@@ -227,15 +245,6 @@ return require('packer').startup(function(use)
         open_mapping = "<C-]>",
         shell = "fish",
         direction = "tab"
-      }
-    end
-  }
-
-  use {
-    "mhanberg/elixir.nvim",
-    requires = {"neovim/nvim-lspconfig", "nvim-lua/plenary.nvim"},
-    config = function()
-      require("elixir").setup {
       }
     end
   }

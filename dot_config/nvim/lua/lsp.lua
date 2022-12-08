@@ -1,6 +1,8 @@
 require("mason").setup()
 
-require("mason-lspconfig").setup {
+local lsp = require("mason-lspconfig")
+
+lsp.setup {
   ensure_installed = {
     "erlangls",
     "sumneko_lua",
@@ -13,12 +15,20 @@ require("mason-lspconfig").setup {
   automatic_installation = true
 }
 
-require("mason-lspconfig").setup_handlers {
+local on_attach = function ()
+  local set_keymap = require("util").set_keymap
+  set_keymap("n", "<leader>A", "<cmd>lua vim.lsp.buf.code_action()<cr>")
+  set_keymap("n", "<leader>H", "<cmd>lua vim.lsp.buf.hover()<cr>")
+  set_keymap("n", "<leader>R", "<cmd>lua vim.lsp.buf.rename()<cr>")
+end
+
+lsp.setup_handlers {
   function (server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup {}
+    require("lspconfig")[server_name].setup { on_attach = on_attach }
   end,
   ["sumneko_lua"] = function ()
     require("lspconfig").sumneko_lua.setup {
+      on_attach = on_attach,
       settings = {
         Lua = {
           diagnostics = {
@@ -31,19 +41,26 @@ require("mason-lspconfig").setup_handlers {
   ["erlangls"] = function ()
     local lspconfig = require("lspconfig")
     lspconfig.erlangls.setup {
-      root_dir = lspconfig.util.root_pattern('erlang.mk', '.git')
+      root_dir = lspconfig.util.root_pattern('erlang.mk', '.git'),
+      on_attach = on_attach,
     }
   end
 }
 
-local set_keymap = require("util").set_keymap
 local has_words_before = require('util').has_words_before
 local cmp = require('cmp')
 
 cmp.setup {
   sources = {
-    { name = 'nvim_lsp' }
+    { name = 'path' },
+    { name = 'buffer' },
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'crates' },
   },
+  expand = function(args)
+    vim.fn["vsnip#anonymous"](args.body)
+  end,
   mapping = {
     ['<C-Space>'] = cmp.mapping.complete(),
 
@@ -66,9 +83,29 @@ cmp.setup {
         end
       end
     end,
+
+    ["<CR>"] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    }),
   },
 }
 
 require('cmp_nvim_lsp').default_capabilities()
 
-set_keymap("n", "<leader>ll", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>")
+-- Set updatetime for CursorHold
+-- 300ms of no cursor movement to trigger CursorHold
+vim.opt.updatetime = 1000
+
+-- Show diagnostic popup on cursor hover
+local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+   vim.diagnostic.open_float(nil, { focusable = false })
+  end,
+  group = diag_float_grp,
+})
+
+-- have a fixed column for the diagnostics to appear in
+-- this removes the jitter when warnings/errors flow in
+vim.wo.signcolumn = "yes"
