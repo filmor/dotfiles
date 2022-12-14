@@ -58,9 +58,11 @@ cmp.setup {
     { name = 'vsnip' },
     { name = 'crates' },
   },
-  expand = function(args)
-    vim.fn["vsnip#anonymous"](args.body)
-  end,
+  snippet = {
+    expand = function(args)
+      return vim.fn["vsnip#anonymous"](args.body)
+    end
+  },
   mapping = {
     ['<C-Space>'] = cmp.mapping.complete(),
 
