@@ -16,3 +16,6 @@ if test -f ~/mambaforge/bin/conda
 end
 # <<< conda initialize <<<
 
+fish_add_path ~/.mix/
+fish_add_path ~/.local/bin/
+fish_add_path ~/.cargo/bin/
