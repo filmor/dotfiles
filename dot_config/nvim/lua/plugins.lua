@@ -110,8 +110,8 @@ return require('packer').startup(function(use)
 
       local set_keymap = require("util").set_keymap
 
-      -- set_keymap("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
-      set_keymap("n", "<leader>e", "<cmd>NvimTreeFindFile<cr>")
+      set_keymap("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
+      -- set_keymap("n", "<leader>e", "<cmd>NvimTreeFindFile<cr>")
     end
   }
 
@@ -243,7 +243,7 @@ return require('packer').startup(function(use)
     "akinsho/toggleterm.nvim",
     config = function()
       require("toggleterm").setup {
-        open_mapping = "<C-]>",
+        open_mapping = "<C-\\>",
         shell = "fish",
         direction = "tab"
       }

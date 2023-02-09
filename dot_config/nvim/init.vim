@@ -79,6 +79,7 @@ autocmd SwapExists * let v:swapchoice = "o"
 
 set foldlevelstart=2
 set colorcolumn=80
+set formatoptions-=t
 
 set termguicolors
 colorscheme gruvbox-material
