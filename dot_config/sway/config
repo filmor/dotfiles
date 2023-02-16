@@ -37,6 +37,8 @@ bindsym $mod+p border toggle
 
 # Theme
 seat seat0 xcursor_theme Adwaita
+# gaps outer 1
+# gaps inner 5
 
 # Clipboard
 exec wl-paste -t text --watch clipman store
@@ -47,13 +49,6 @@ set $lock 'swaylock -e -f -F --indicator-idle-visible -c 000000'
 set $fancylock 'swaylock -e -f -F --indicator-idle-visible --screenshots --fade-in 3.0 --effect-pixelate 10 --grace 3'
 
 bindsym $mod+l exec 'loginctl lock-session'
-
-exec swayidle -w \
-         timeout 300 'loginctl lock-session' \
-         timeout 600 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-         lock 'swaylock -e -f -F --indicator-idle-visible --screenshots --fade-in 3.0 --effect-pixelate 10 --grace 3' \
-         before-sleep 'swaylock -e -f -F --indicator-idle-visible -c 000000'
 
 ### Output configuration
 #
@@ -66,6 +61,7 @@ exec swayidle -w \
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 output * adaptive_sync on
+# output "Dell Inc. Dell U4919DW HW82XP2" mode 5120x1440@60Hz
 
 ### Idle configuration
 #
@@ -80,6 +76,13 @@ output * adaptive_sync on
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+
+exec swayidle -w \
+         timeout 300 'loginctl lock-session' \
+         timeout 600 'swaymsg "output * power off"' \
+              resume 'swaymsg "output * power on"' \
+         lock $lock \
+         before-sleep $lock
 
 ### Input configuration
 #
