@@ -126,6 +126,12 @@ return require('packer').startup(function(use)
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
+
+      local set_keymap = require("util").set_keymap
+      -- Ctrl-/, special keycode
+      set_keymap("n", "<C-_>", "gcc")
+      set_keymap("i", "<C-_>", "gcc")
+      set_keymap("v", "<C-_>", "gc")
     end
   }
 
