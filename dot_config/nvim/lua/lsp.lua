@@ -5,7 +5,7 @@ local lsp = require("mason-lspconfig")
 lsp.setup {
   ensure_installed = {
     "erlangls",
-    "sumneko_lua",
+    "lua_ls",
     "rust_analyzer",
     "bashls",
     "vimls",
@@ -26,8 +26,8 @@ lsp.setup_handlers {
   function (server_name) -- default handler (optional)
     require("lspconfig")[server_name].setup { on_attach = on_attach }
   end,
-  ["sumneko_lua"] = function ()
-    require("lspconfig").sumneko_lua.setup {
+  ["lua_ls"] = function ()
+    require("lspconfig").lua_ls.setup {
       on_attach = on_attach,
       settings = {
         Lua = {
