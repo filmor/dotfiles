@@ -249,7 +249,7 @@ return require('packer').startup(function(use)
     "akinsho/toggleterm.nvim",
     config = function()
       require("toggleterm").setup {
-        open_mapping = "<C-\\>",
+        open_mapping = "<C-B>",
         shell = "fish",
         direction = "tab"
       }
