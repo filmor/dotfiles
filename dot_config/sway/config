@@ -25,13 +25,14 @@ set $menu wofi -i -S drun --gtk-dark --allow-images
 
 for_window [app_id=".*"] border none
 for_window [app_id="gnome-.*"] border csd
-# for_window [app_id="thunar"] border csd
-for_window [class="VSCodium"] border none
 for_window [app_id="firefox-.*"] border csd
 
 for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$"] border none
 for_window [app_id="qsynth"] floating enable
+for_window [floating] border csd
+
+default_floating_border pixel 5
 
 bindsym $mod+p border toggle
 
