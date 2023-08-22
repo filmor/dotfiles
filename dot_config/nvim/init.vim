@@ -1,3 +1,5 @@
+" lua require('lazy_boostrap')
+" lua require('lazy').setup('plugins', opts)
 lua require('plugins')
 lua require('lsp')
 
