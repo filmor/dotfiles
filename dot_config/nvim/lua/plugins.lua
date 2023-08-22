@@ -240,4 +240,10 @@ return {
         require('distant'):setup()
     end
   },
+
+  {
+    'kaarmu/typst.vim',
+    ft = 'typst',
+    lazy=false,
+  }
 }
