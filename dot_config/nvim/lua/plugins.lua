@@ -127,7 +127,7 @@ return {
 
   {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
       require("trouble").setup {}
 
@@ -142,7 +142,7 @@ return {
 
   {
     'nvim-telescope/telescope.nvim',
-    requires = {'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-ui-select.nvim'},
+    dependencies = {'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-ui-select.nvim'},
     config = function()
       local actions = require("telescope.actions")
       require("telescope").setup {
