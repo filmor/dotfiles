@@ -29,8 +29,8 @@ vim.opt.showcmd = true
 vim.g.mapleader=" "
 vim.keymap.set("n", "<SPACE>", "<Nop>", {noremap = true})
 
--- require('lazy_boostrap')
--- require('lazy').setup('plugins', opts)
+require('lazy_boostrap')
+require('lazy').setup('plugins')
 require('plugins')
 require('lsp')
 

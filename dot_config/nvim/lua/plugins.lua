@@ -1,26 +1,9 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
-
-local PACKER_BOOTSTRAP = ensure_packer()
-
-return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-
-  use 'kazhala/close-buffers.nvim'
-
-  use 'sainnhe/gruvbox-material'
-
-  use {
+return {
+  'kazhala/close-buffers.nvim',
+  'sainnhe/gruvbox-material',
+  {
     "neovim/nvim-lspconfig",
-    requires = {
+    dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/nvim-cmp",
@@ -34,9 +17,8 @@ return require('packer').startup(function(use)
       require('nvim-lightbulb').setup({autocmd = {enabled = true}})
       -- All remaining in lsp.lua
     end
-  }
-
-  use {
+  },
+  {
     'mhartington/formatter.nvim',
     config = function()
       require('formatter').setup {
@@ -72,18 +54,17 @@ return require('packer').startup(function(use)
       local set_keymap = require('util').set_keymap
       set_keymap('n', '<leader>F', ':FormatWrite<CR>')
     end
-  }
+  },
+  'editorconfig/editorconfig-vim',
 
-  use 'editorconfig/editorconfig-vim'
+  'vim-airline/vim-airline',
+  'vim-airline/vim-airline-themes',
 
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
+  'cappyzawa/trim.nvim',
 
-  use 'cappyzawa/trim.nvim'
-
-  use {
+  {
     'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('nvim-tree').setup {
         hijack_cursor = true,
@@ -113,16 +94,16 @@ return require('packer').startup(function(use)
       set_keymap("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
       -- set_keymap("n", "<leader>e", "<cmd>NvimTreeFindFile<cr>")
     end
-  }
+  },
 
-  use {
+  {
     "ray-x/lsp_signature.nvim",
     config = function()
       require "lsp_signature".setup({})
     end
-  }
+  },
 
-  use {
+  {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
@@ -133,18 +114,18 @@ return require('packer').startup(function(use)
       set_keymap("i", "<C-_>", "gcc")
       set_keymap("v", "<C-_>", "gc")
     end
-  }
+  },
 
-  use {
+  {
       'saecki/crates.nvim',
       tag = 'v0.3.0',
-      requires = { 'nvim-lua/plenary.nvim' },
+      dependencies = { 'nvim-lua/plenary.nvim' },
       config = function()
           require('crates').setup()
       end,
-  }
+  },
 
-  use {
+  {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
@@ -157,9 +138,9 @@ return require('packer').startup(function(use)
       set_keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
       set_keymap("n", "<leader>xx", "<cmd>TroubleToggle lsp_references<cr>")
     end
-  }
+  },
 
-  use {
+  {
     'nvim-telescope/telescope.nvim',
     requires = {'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-ui-select.nvim'},
     config = function()
@@ -197,11 +178,11 @@ return require('packer').startup(function(use)
       set_keymap("n", "<leader>gs", "<cmd>Telescope git_status<cr>")
       set_keymap("n", "<leader>gf", "<cmd>Telescope git_files<cr>")
     end
-  }
+  },
 
   -- use "lukas-reineke/indent-blankline.nvim"
 
-  use {
+  {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
@@ -230,22 +211,18 @@ return require('packer').startup(function(use)
         textobjects = { enable = true },
       }
     end
-  }
+  },
 
-  use {
-    'nvim-treesitter/playground'
-  }
-
-  use {
+  {
     'rmagatti/auto-session',
     config = function()
       require('auto-session').setup {
         auto_session_suppress_dirs = {'~/'}
       }
     end
-  }
+  },
 
-  use {
+  {
     "akinsho/toggleterm.nvim",
     config = function()
       require("toggleterm").setup {
@@ -254,17 +231,13 @@ return require('packer').startup(function(use)
         direction = "tab"
       }
     end
-  }
+  },
 
-  use {
+  {
     'chipsenkbeil/distant.nvim',
     branch = 'v0.3',
     config = function()
         require('distant'):setup()
     end
-  }
-
-  if PACKER_BOOTSTRAP then
-    require('packer').sync()
-  end
-end)
+  },
+}
