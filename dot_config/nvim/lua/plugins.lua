@@ -1,6 +1,15 @@
 return {
+  {
+    'sainnhe/gruvbox-material',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme gruvbox-material]])
+    end
+  },
+
   'kazhala/close-buffers.nvim',
-  'sainnhe/gruvbox-material',
+
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -20,8 +29,12 @@ return {
   },
   {
     'mhartington/formatter.nvim',
+    keys = {
+      {'<leader>F', '<cmd>FormatWrite<cr>', desc = "Format document" }
+    },
+    lazy = true,
     config = function()
-      require('formatter').setup {
+      require("formatter").setup({
         logging = true,
         log_level = 2,
         filetype = {
@@ -50,9 +63,7 @@ return {
           cs = require("formatter.filetypes.cs").dotnetformat,
           json = require("formatter.filetypes.json").jq,
         }
-      }
-      local set_keymap = require('util').set_keymap
-      set_keymap('n', '<leader>F', ':FormatWrite<CR>')
+      })
     end
   },
   'editorconfig/editorconfig-vim',
@@ -184,7 +195,7 @@ return {
 
   {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    build = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = {
@@ -199,6 +210,7 @@ return {
           "html",
           "eex",
           "json",
+          "jsonc",
           "toml",
           "typescript"
         },
@@ -224,13 +236,18 @@ return {
 
   {
     "akinsho/toggleterm.nvim",
-    config = function()
-      require("toggleterm").setup {
-        open_mapping = "<C-B>",
-        shell = "fish",
-        direction = "tab"
-      }
-    end
+
+    keys = {
+      { "<C-B>", "<cmd>ToggleTerm<cr>", desc = "Terminal" }
+    },
+
+    lazy = true,
+
+    opts = {
+      open_mapping = "<C-B>",
+      shell = "fish",
+      direction = "tab"
+    }
   },
 
   {
@@ -244,6 +261,14 @@ return {
   {
     'kaarmu/typst.vim',
     ft = 'typst',
-    lazy=false,
+    lazy = false,
+  },
+
+  {
+    'https://codeberg.org/esensar/nvim-dev-container',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {
+      container_runtime = "podman"
+    }
   }
 }

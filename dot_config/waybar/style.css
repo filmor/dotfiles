@@ -65,6 +65,8 @@ window#waybar.chromium {
     border-bottom: 3px solid #ffffff;
 }
 
+#custom-totp_u,
+#custom-totp_a,
 #clock,
 #battery,
 #cpu,
