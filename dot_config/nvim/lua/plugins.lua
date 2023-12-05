@@ -270,5 +270,9 @@ return {
     opts = {
       container_runtime = "podman"
     }
+  },
+
+  {
+    "FabijanZulj/blame.nvim"
   }
 }

@@ -4,20 +4,21 @@ local lsp = require("mason-lspconfig")
 
 lsp.setup {
   ensure_installed = {
-    "erlangls",
+    -- "erlangls",
+    "elp",
     "lua_ls",
     "rust_analyzer",
     "bashls",
     "vimls",
     "pyright",
-    "omnisharp",
+    "csharp_ls",
   },
   automatic_installation = true
 }
 
 local on_attach = function ()
   local set_keymap = require("util").set_keymap
-  set_keymap("n", "<leader>A", "<cmd>lua vim.lsp.buf.code_action()<cr>")
+  set_keymap("n", "<esc><cr>", "<cmd>lua vim.lsp.buf.code_action()<cr>")
   set_keymap("n", "<leader>H", "<cmd>lua vim.lsp.buf.hover()<cr>")
   set_keymap("n", "<leader>R", "<cmd>lua vim.lsp.buf.rename()<cr>")
 end
