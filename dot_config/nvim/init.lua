@@ -1,13 +1,13 @@
-  vim.opt.shell="/bin/bash"
+vim.opt.shell="/bin/bash"
 
-  vim.opt.softtabstop = 4
-  vim.opt.shiftwidth = 4
-  vim.opt.textwidth = 80
-  vim.opt.tabstop = 4
-  vim.opt.encoding = "utf-8"
-  vim.opt.expandtab = true
-  vim.opt.number = true
-  vim.opt.visualbell = true
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.textwidth = 80
+vim.opt.tabstop = 4
+vim.opt.encoding = "utf-8"
+vim.opt.expandtab = true
+vim.opt.number = true
+vim.opt.visualbell = true
 vim.opt.ffs = "unix,dos"
 vim.opt.mouse = "a"
 vim.opt.smartcase = true
@@ -30,6 +30,12 @@ vim.g.mapleader=" "
 vim.keymap.set("n", "<SPACE>", "<Nop>", {noremap = true})
 
 vim.opt.termguicolors = true
+
+if vim.g.neovide then
+  vim.opt.guifont = "FiraCode Nerd Font,Fira Code,monospace:h11"
+  vim.g.neovide_cursor_trail_size = 0
+  vim.g.neovide_cursor_vfx_mode = "pixiedust"
+end
 
 require('lazy_boostrap')
 require('lazy').setup('plugins')
