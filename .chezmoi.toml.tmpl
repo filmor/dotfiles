@@ -1,0 +1,6 @@
+{{- $laptop := promptBoolOnce . "laptop" "Laptop" -}}
+{{- $work := promptBoolOnce . "work" "Work" -}}
+
+[data]
+laptop = {{ $laptop }}
+work = {{ $work }}
