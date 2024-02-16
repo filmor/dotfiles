@@ -7,7 +7,9 @@
     "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
     "modules-center": ["sway/window"],
     "modules-right": [
+        "sway/language",
         "idle_inhibitor",
+        {{ if .work }}"custom/totp_u", "custom/totp_a",{{ end }}
         "cpu",
         "memory",
         "network",
@@ -36,6 +38,18 @@
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
+    {{ if .work }}
+    "custom/totp_u": {
+        "on-click": "$HOME/.local/bin/totp u37166 | wl-copy",
+        "interval": 15,
+        "format": "u🔒"
+    },
+    "custom/totp_a": {
+        "on-click": "$HOME/.local/bin/totp adm_u37166 | wl-copy",
+        "interval": 15,
+        "format": "a🔒"
+    },
+    {{ end }}
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
