@@ -1,0 +1,6 @@
+#!/bin/bash
+
+HOST=$1
+NODE=$2
+
+read ssh $HOST "epmd -names" | tail -n +2 | grep 'name $NODE' | cut -d " " -f 2,5

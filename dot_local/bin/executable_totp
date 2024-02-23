@@ -1,0 +1,5 @@
+#!/bin/bash
+
+NAME=$1
+
+secret-tool lookup kind totp account "$NAME" | oathtool -b --totp -

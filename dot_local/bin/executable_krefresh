@@ -1,0 +1,4 @@
+#!/bin/bash
+
+secret-tool lookup account u37166 kind password | kinit -f u37166@ENERGYCORP.COM > /dev/null
+secret-tool lookup account adm_u37166 kind password | kinit -f adm_u37166@ENERGYCORP.COM > /dev/null

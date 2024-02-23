@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Observer Dev
+Exec=erl -hidden -sname observer_dev -setcookie etp_test -s observer start_and_wait etp@weuxaetr001d -s init stop -noshell
+Type=Application
+Icon=network
+Terminal=false

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Start VPN
+Exec=nmcli c u "Statkraft VPN"
+Type=Application
+Icon=network
+Terminal=false
