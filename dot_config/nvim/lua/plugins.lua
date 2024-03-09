@@ -51,7 +51,7 @@ return {
               }
             end,
           elixir = require("formatter.filetypes.elixir").mixformat,
-          python = require("formatter.filetypes.python").black,
+          python = require("formatter.filetypes.python").ruff,
           rust = function()
             return {
               name = "rustfmt",
