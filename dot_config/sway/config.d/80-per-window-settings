@@ -1,0 +1,4 @@
+# vi: ft=swayconfig
+
+for_window [class="^Steam$"] floating enable
+for_window [app_id="qsynth"] floating enable

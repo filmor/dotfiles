@@ -1,0 +1,4 @@
+# vi: ft=swayconfig
+# Requires grim, slurp and wl-copy
+
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy

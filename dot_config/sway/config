@@ -26,11 +26,6 @@ set $menu wofi -i -S drun --gtk-dark --allow-images
 default_border pixel 0
 for_window [app_id=".*"] border csd
 
-for_window [class="^Steam$"] floating enable
-for_window [app_id="qsynth"] floating enable
-
-bindsym $mod+p border toggle
-
 # Theme
 seat seat0 xcursor_theme Adwaita
 # gaps outer 1
@@ -42,7 +37,6 @@ bindsym $mod+h exec clipman pick -t wofi
 
 # Locking
 set $lock 'swaylock -e -f -F --indicator-idle-visible -c 000000'
-set $fancylock 'swaylock -e -f -F --indicator-idle-visible --screenshots --fade-in 3.0 --effect-pixelate 10 --grace 3'
 
 bindsym $mod+l exec 'loginctl lock-session'
 
@@ -279,20 +273,7 @@ bindsym $mod+r mode "resize"
 #     swaybar_command waybar
 # }
 
-# Misc keys
-# bindsym --locked XF86MonBrightnessUp 
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym --locked XF86MonBrightnessDown exec light -U 10
-bindsym --locked XF86MonBrightnessUp exec light -A 10
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
-
 include /etc/sway/config.d/*
+include ~/.config/sway/config.d/*
 
 exec ~/.config/sway/session.sh --with-cleanup
