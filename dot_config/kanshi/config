@@ -3,6 +3,16 @@ profile "external screen" {
     output DP-1 enable # scale 1.5
 }
 
+profile "external screen 2" {
+    output eDP-1 disable
+    output DP-2 enable # scale 1.5
+}
+
+profile "external screen 3" {
+    output eDP-1 disable
+    output DP-3 enable # scale 1.5
+}
+
 profile "only laptop" {
     output eDP-1 enable
 }

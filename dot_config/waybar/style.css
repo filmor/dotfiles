@@ -67,6 +67,8 @@ window#waybar.chromium {
 
 #custom-totp_u,
 #custom-totp_a,
+#window,
+#language,
 #clock,
 #battery,
 #cpu,
@@ -83,6 +85,11 @@ window#waybar.chromium {
     padding: 0 10px;
     margin: 0 4px;
     color: #ffffff;
+}
+
+#window {
+    font-weight: bold;
+    background-color: #64727D
 }
 
 #clock {

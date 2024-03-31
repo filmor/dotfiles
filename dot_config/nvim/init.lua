@@ -32,7 +32,7 @@ vim.keymap.set("n", "<SPACE>", "<Nop>", {noremap = true})
 vim.opt.termguicolors = true
 
 if vim.g.neovide then
-  vim.opt.guifont = "FiraCode Nerd Font,Fira Code,monospace:h11"
+  vim.opt.guifont = "FiraCode Nerd Font,Fira Code:h11"
   vim.g.neovide_cursor_trail_size = 0
   vim.g.neovide_cursor_vfx_mode = "pixiedust"
 end
