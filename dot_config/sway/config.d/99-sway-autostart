@@ -1,3 +1,4 @@
 # vi: ft=swayconfig
 
+exec autotiling
 exec kanshi
