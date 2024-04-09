@@ -11,10 +11,11 @@ vim.opt.visualbell = true
 vim.opt.ffs = "unix,dos"
 vim.opt.mouse = "a"
 vim.opt.smartcase = true
+vim.opt.smartindent = false
 vim.opt.colorcolumn = "80"
 
 -- Copy to/paste from system clipboard
-vim.opt.clipboard:append("unnamed")
+vim.opt.clipboard:append("unnamedplus")
 
 -- Don't start comment when creating a new line with 'o' or 'O'
 vim.opt.formatoptions:remove("o")

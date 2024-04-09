@@ -212,13 +212,17 @@ return {
           "json",
           "jsonc",
           "toml",
-          "typescript"
+          "typescript",
+          "yaml",
         },
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
         },
-        indent = { disable = true },
+        indent = {
+          enable = true,
+          disable = { "yaml" },
+        },
         incremental_selection = { enable = true },
         textobjects = { enable = true },
       }
