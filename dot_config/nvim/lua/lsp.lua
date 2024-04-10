@@ -10,7 +10,7 @@ lsp.setup {
     "rust_analyzer",
     "bashls",
     "vimls",
-    "pyright",
+    "pylsp",
     "csharp_ls",
   },
   automatic_installation = true
