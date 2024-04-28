@@ -45,6 +45,21 @@ lsp.setup_handlers {
       root_dir = lspconfig.util.root_pattern('erlang.mk', '.git'),
       on_attach = on_attach,
     }
+  end,
+  ["pylsp"] = function ()
+    require("lspconfig").pylsp.setup {
+      settings = {
+        pylsp = {
+          plugins = {
+            pylsp_mypy = { enabled = true },
+            pycodestyle = {
+              ignore = {'E203'},
+              maxLineLength = 90
+            }
+          }
+        }
+      }
+    }
   end
 }
 

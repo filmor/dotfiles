@@ -12,3 +12,5 @@ bindsym --locked XF86MonBrightnessUp exec light -A 10
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+bindsym $mod+Pause exec systemctl suspend

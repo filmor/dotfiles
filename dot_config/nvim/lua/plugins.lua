@@ -221,7 +221,7 @@ return {
         },
         indent = {
           enable = true,
-          disable = { "yaml" },
+          disable = { "yaml", "python" },
         },
         incremental_selection = { enable = true },
         textobjects = { enable = true },
