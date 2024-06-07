@@ -2,3 +2,4 @@
 
 exec autotiling
 exec kanshi
+exec ~/.config/sway/scripts/wsdnames.py

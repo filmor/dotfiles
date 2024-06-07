@@ -2,3 +2,4 @@
 # Requires grim, slurp and wl-copy
 
 bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Shift+t exec grim -g "$(slurp)" - | tesseract - - --psm 6 | wl-copy
