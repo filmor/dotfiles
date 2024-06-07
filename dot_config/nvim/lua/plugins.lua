@@ -211,6 +211,7 @@ return {
           "eex",
           "json",
           "jsonc",
+          "just",
           "toml",
           "typescript",
           "yaml",
@@ -303,6 +304,11 @@ return {
 
       "nvim-telescope/telescope.nvim",
     },
+    config = true
+  },
+
+  {
+    "nmac427/guess-indent.nvim",
     config = true
   },
 

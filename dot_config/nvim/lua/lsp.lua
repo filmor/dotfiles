@@ -6,11 +6,12 @@ lsp.setup {
   ensure_installed = {
     -- "erlangls",
     "elp",
+    "lexical",
     "lua_ls",
     "rust_analyzer",
     "bashls",
     "vimls",
-    "pylsp",
+    "basedpyright",
     "csharp_ls",
   },
   automatic_installation = true
@@ -60,7 +61,7 @@ lsp.setup_handlers {
         }
       }
     }
-  end
+  end,
 }
 
 local has_words_before = require('util').has_words_before

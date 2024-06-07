@@ -46,6 +46,7 @@ require('lsp')
 vim.cmd [[
 augroup filetype
     au BufNewFile,BufRead *.escript,*.script setf erlang
+    au BufNewFile,BufRead justfile setf just
     au FileType javascript setl sts=2 sw=2 ts=2
     au FileType lua setl sts=2 sw=2 ts=2
     au FileType elixir setl sts=2 sw=2 ts=2
