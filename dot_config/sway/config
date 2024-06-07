@@ -111,6 +111,7 @@ input type:keyboard {
 #
     # start a terminal
     bindsym $mod+Return exec $term
+    bindsym $mod+KP_Enter exec $term
 
     # kill focused window
     bindsym $mod+Shift+q kill
@@ -161,30 +162,30 @@ input type:keyboard {
 # Workspaces:
 #
     # switch to workspace
-    bindsym $mod+1 workspace 1
-    bindsym $mod+2 workspace 2
-    bindsym $mod+3 workspace 3
-    bindsym $mod+4 workspace 4
-    bindsym $mod+5 workspace 5
-    bindsym $mod+6 workspace 6
-    bindsym $mod+7 workspace 7
-    bindsym $mod+8 workspace 8
-    bindsym $mod+9 workspace 9
-    bindsym $mod+0 workspace 10
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
     bindsym $mod+Ctrl+Right workspace next_on_output
     bindsym $mod+Ctrl+Left workspace prev_on_output
     bindsym $mod+Tab workspace back_and_forth
     # move focused window to workspace
-    bindsym $mod+Shift+1 move window to workspace 1
-    bindsym $mod+Shift+2 move window to workspace 2
-    bindsym $mod+Shift+3 move window to workspace 3
-    bindsym $mod+Shift+4 move window to workspace 4
-    bindsym $mod+Shift+5 move window to workspace 5
-    bindsym $mod+Shift+6 move window to workspace 6
-    bindsym $mod+Shift+7 move window to workspace 7
-    bindsym $mod+Shift+8 move window to workspace 8
-    bindsym $mod+Shift+9 move window to workspace 9
-    bindsym $mod+Shift+0 move window to workspace 10
+    bindsym $mod+Shift+1 move window to workspace number 1
+    bindsym $mod+Shift+2 move window to workspace number 2
+    bindsym $mod+Shift+3 move window to workspace number 3
+    bindsym $mod+Shift+4 move window to workspace number 4
+    bindsym $mod+Shift+5 move window to workspace number 5
+    bindsym $mod+Shift+6 move window to workspace number 6
+    bindsym $mod+Shift+7 move window to workspace number 7
+    bindsym $mod+Shift+8 move window to workspace number 8
+    bindsym $mod+Shift+9 move window to workspace number 9
+    bindsym $mod+Shift+0 move window to workspace number 10
     bindsym $mod+Ctrl+Shift+Right move window to workspace next_on_output
     bindsym $mod+Ctrl+Shift+Left move window to workspace prev_on_output
     bindsym $mod+Shift+Tab move window to workspace back_and_forth
