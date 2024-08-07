@@ -209,3 +209,8 @@ label:focus {
 #mpd.paused {
     background-color: #51a37a;
 }
+
+#custom-notification {
+    font-family: "Fira Code Nerd Font";
+    min-width: 32px;
+}

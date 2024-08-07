@@ -17,7 +17,8 @@
         "pulseaudio",
         {{ if .laptop }}"battery",{{ end }}
         "clock",
-        "tray"
+        "tray",
+        "custom/notification"
     ],
     // Modules configuration
     // "sway/workspaces": {
@@ -37,6 +38,9 @@
     // },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/window": {
+	"icon": true
     },
     {{ if .work }}
     "custom/totp_u": {
@@ -123,6 +127,27 @@
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "justify": "left",
+        "escape": true
     },
     /* "custom/media": {
         "format": "{icon} {}",

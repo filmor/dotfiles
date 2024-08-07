@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ -z "$1" ]
+then
+    zellij -l welcome
+else
+    zellij a -c "$1"
+fi
