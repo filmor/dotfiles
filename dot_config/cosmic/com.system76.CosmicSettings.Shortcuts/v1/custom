@@ -1,0 +1,23 @@
+{
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Return",
+        description: Some("Terminal"),
+    ): Spawn("alacritty"),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "s",
+    ): System(Screenshot),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "t",
+        description: Some("Terminal"),
+    ): Spawn("alacritty"),
+}
