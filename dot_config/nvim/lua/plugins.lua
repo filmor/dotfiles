@@ -75,8 +75,8 @@ return {
   'cappyzawa/trim.nvim',
 
   {
-    'kyazdani42/nvim-tree.lua',
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    'nvim-tree/nvim-tree.lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('nvim-tree').setup {
         hijack_cursor = true,
@@ -139,7 +139,7 @@ return {
 
   {
     "folke/trouble.nvim",
-    dependencies = "kyazdani42/nvim-web-devicons",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("trouble").setup {}
 
@@ -298,17 +298,6 @@ return {
   },
 
   {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
-
-      "nvim-telescope/telescope.nvim",
-    },
-    config = true
-  },
-
-  {
     "nmac427/guess-indent.nvim",
     config = true
   },
@@ -331,4 +320,18 @@ return {
       { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
     },
   },
+
+  {
+    "github/copilot.vim"
+  },
+
+  {
+      'MeanderingProgrammer/render-markdown.nvim',
+      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+      dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+      ---@module 'render-markdown'
+      ---@type render.md.UserConfig
+      opts = {},
+  }
 }
