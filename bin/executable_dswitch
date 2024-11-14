@@ -1,0 +1,18 @@
+#!/bin/bash
+
+USB=0x1b
+DP=0x0f
+
+CURRENT=0$(ddcutil getvcp -t 60 | cut -d " " -f 4)
+
+case $CURRENT in
+    $USB)
+        ddcutil setvcp 60 $DP
+        ;;
+    $DP)
+        ddcutil setvcp 60 $USB
+        ;;
+    *)
+        echo "Unknown value: $CURRENT"
+        ;;
+esac
