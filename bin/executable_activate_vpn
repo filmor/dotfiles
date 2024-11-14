@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo -e "u37166\n$(secret-tool lookup account u37166 kind password)\n" | nmcli c u "Statkraft VPN" --ask
