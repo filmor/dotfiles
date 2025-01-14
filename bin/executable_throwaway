@@ -1,0 +1,19 @@
+#!/bin/bash
+
+THIS_PID=$$
+THIS_DIR=$(pwd)
+SHELL=$(ps --pid $(ps --pid $THIS_PID -o ppid=) -o cmd=)
+
+export THROWAWAY_DIR=$(mktemp -d)
+
+cleanup() {
+    cd $THIS_DIR
+    rm -rf ${THROWAWAY_DIR}
+}
+
+trap cleanup SIGINT SIGTERM EXIT
+
+cd $THROWAWAY_DIR
+$SHELL
+
+cleanup

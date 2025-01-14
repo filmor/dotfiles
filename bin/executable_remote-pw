@@ -1,0 +1,24 @@
+#!/bin/bash
+
+HOST=$1
+shift
+
+BASE=$XDG_RUNTIME_DIR/remote-pw
+mkdir -p $BASE
+
+export PIPEWIRE_RUNTIME_DIR=$(mktemp -d $BASE/XXXX)
+
+cleanup() {
+    rm -r ${PIPEWIRE_RUNTIME_DIR}
+    trap - SIGTERM && kill -- -$$
+}
+
+trap cleanup SIGINT SIGTERM EXIT
+
+REMOTE_XDG_RUNTIME_DIR=$(ssh $HOST -- 'echo $XDG_RUNTIME_DIR')
+ssh -N \
+    -L "${PIPEWIRE_RUNTIME_DIR}/pipewire-0:${XDG_RUNTIME_DIR}/pipewire-0" \
+    -L "${PIPEWIRE_RUNTIME_DIR}/pipewire-0-manager:${XDG_RUNTIME_DIR}/pipewire-0-manager" \
+    "$HOST" 2>&1 > /dev/null &
+
+eval "$@"
