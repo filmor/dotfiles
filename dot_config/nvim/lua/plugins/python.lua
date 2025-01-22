@@ -1,6 +1,7 @@
 return {
   {
     "filmor/venv-selector.nvim",
+    branch = "main",
     enabled = true,
     opts = {
       -- Your options go here
