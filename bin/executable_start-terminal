@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Path to the foot socket
+FOOT_SOCKET="${XDG_RUNTIME_DIR:-/run/user/$UID}/foot-default.socket"
+
+# Check if the foot socket exists
+if [[ -S "$FOOT_SOCKET" ]]; then
+  echo "Foot socket found. Starting footclient..."
+  exec footclient
+  exit 0
+fi
+
+# List of terminal emulators to check, in order of preference
+terminals=("foot" "alacritty" "ghostty" "xterm")
+
+# Iterate over each terminal emulator
+for terminal in "${terminals[@]}"; do
+  # Check if the terminal command exists
+  if command -v "$terminal" &> /dev/null; then
+    echo "Starting $terminal..."
+    exec "$terminal"
+    exit 0
+  fi
+done
+
+# If none of the terminals were found, print a message and exit
+echo "No terminal emulator found from the list: ${terminals[*]}"
+exit 1

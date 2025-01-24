@@ -5,7 +5,7 @@
         ],
         key: "Return",
         description: Some("Terminal"),
-    ): Spawn("alacritty"),
+    ): Spawn("start-terminal"),
     (
         modifiers: [
             Super,
