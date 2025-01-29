@@ -1,0 +1,4 @@
+
+#!/bin/sh
+
+nvim --headless  "+Lazy! sync" "+TSUpdate" "+MasonInstallAll" +qa
