@@ -37,4 +37,9 @@ return {
     ---@type render.md.UserConfig
     opts = {},
   },
+
+  {
+	  "hinell/lsp-timeout.nvim",
+	  dependencies={ "neovim/nvim-lspconfig" }
+  }
 }
