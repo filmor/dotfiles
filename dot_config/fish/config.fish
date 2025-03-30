@@ -1,5 +1,9 @@
 if status is-interactive
   # Commands to run in interactive sessions can go here
+  set -gx ATUIN_NOBIND "true"  
+  atuin init fish | source
+  bind \cr _atuin_search
+  bind -M insert \cr _atuin_search
 end
 
 function fish_greeting
@@ -23,3 +27,6 @@ end
 if type -q mise
   mise activate fish | source
 end
+
+# uv
+fish_add_path "/home/u37166/.local/bin"
