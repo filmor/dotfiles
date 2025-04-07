@@ -41,5 +41,10 @@ return {
   {
 	  "hinell/lsp-timeout.nvim",
 	  dependencies={ "neovim/nvim-lspconfig" }
+  },
+
+  {
+    "echasnovski/mini.pairs",
+    enabled = false
   }
 }
