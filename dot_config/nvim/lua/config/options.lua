@@ -28,3 +28,4 @@ vim.opt.splitright = true
 
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.autoformat = false
+vim.g.ai_cmp = false

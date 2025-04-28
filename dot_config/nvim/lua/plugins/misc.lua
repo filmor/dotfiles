@@ -38,13 +38,8 @@ return {
     opts = {},
   },
 
-  {
-	  "hinell/lsp-timeout.nvim",
-	  dependencies={ "neovim/nvim-lspconfig" }
-  },
-
-  {
-    "echasnovski/mini.pairs",
-    enabled = false
-  }
+  -- {
+  --  "hinell/lsp-timeout.nvim",
+  --  dependencies={ "neovim/nvim-lspconfig" }
+  -- }
 }

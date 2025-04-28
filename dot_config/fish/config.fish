@@ -1,7 +1,7 @@
 if status is-interactive
   # Commands to run in interactive sessions can go here
   set -gx ATUIN_NOBIND "true"  
-  atuin init fish | source
+  atuin init fish --disable-up-arrow | source
   bind \cr _atuin_search
   bind -M insert \cr _atuin_search
 end
