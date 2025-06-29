@@ -38,6 +38,21 @@ return {
     opts = {},
   },
 
+  {
+    "Saghen/blink.cmp",
+    opts = {
+      sources = {
+        providers = {
+          snippets = {
+            opts = {
+              clipboard_register = "a", -- use the 'a' register for snippets
+            }
+          }
+        }
+      }
+    }
+  },
+
   -- {
   --  "hinell/lsp-timeout.nvim",
   --  dependencies={ "neovim/nvim-lspconfig" }
