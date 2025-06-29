@@ -1,3 +1,4 @@
 .config/nvim/plugin/packer_compiled.lua
+.config/config/com.system76.CosmicBackground/
 install.sh
 README.md
