@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Observer Prod 2
+Exec=erl -hidden -name undefined -setcookie etp -s observer start_and_wait etp@dusxpetr002p.energycorp.com -s init stop -noshell
+Type=Application
+Icon=network
+Terminal=false
