@@ -10,6 +10,11 @@ return {
         end
       end, {})
 
+      opts.registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry",
+      }
+
       return opts
     end,
   },
