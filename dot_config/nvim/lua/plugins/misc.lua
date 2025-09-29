@@ -39,7 +39,7 @@ return {
   },
 
   {
-    "Saghen/blink.cmp",
+    "saghen/blink.cmp",
     opts = {
       sources = {
         providers = {
@@ -54,7 +54,10 @@ return {
   },
 
   -- {
-  --  "hinell/lsp-timeout.nvim",
-  --  dependencies={ "neovim/nvim-lspconfig" }
-  -- }
+  --   "iamkarasik/sonarqube.nvim",
+  --   config = function()
+  --     require("sonarqube").setup({
+  --     })
+  --   end,
+  -- },
 }
