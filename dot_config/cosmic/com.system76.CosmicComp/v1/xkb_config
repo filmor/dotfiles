@@ -4,4 +4,6 @@
     layout: "us,us",
     variant: "intl,",
     options: None,
+    repeat_delay: 400,
+    repeat_rate: 40,
 )
