@@ -24,3 +24,5 @@
 	initializenew = true
 [push]
 	recurseSubmodules = check
+[rerere]
+	enabled = true

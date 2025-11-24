@@ -1,7 +1,7 @@
 return {
   {
     "tpope/mini.pairs",
-    enabled = false
+    enabled = false,
   },
   {
     "neovim/nvim-lspconfig",
@@ -13,5 +13,5 @@ return {
         },
       },
     },
-  }
+  },
 }
