@@ -4,7 +4,7 @@ return {
         servers = {
             -- Disable elixir-ls
             elixirls = false,
-            lexical = {},
+            expert = {},
         }
     }
 }
