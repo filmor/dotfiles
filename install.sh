@@ -23,7 +23,7 @@ fi
 # POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
 script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 
-if [ "x$CODER" == "xtrue" ]; then
+if [ "$CODER" = "true" ]; then
 	set -- init --one-shot --source="${script_dir}"
 else
 	set -- init --apply --source="${script_dir}"
