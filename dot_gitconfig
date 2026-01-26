@@ -26,3 +26,5 @@
 	recurseSubmodules = check
 [rerere]
 	enabled = true
+[credential "https://gitlab.com"]
+	helper = !/usr/bin/glab auth git-credential
