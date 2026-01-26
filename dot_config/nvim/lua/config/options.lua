@@ -26,6 +26,13 @@ vim.opt.formatoptions:remove("t")
 vim.opt.switchbuf:append("useopen,usetab")
 vim.opt.splitright = true
 
-vim.g.lazyvim_python_lsp = "basedpyright"
+-- vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_lsp = "ty"
 vim.g.autoformat = false
 vim.g.ai_cmp = false
+
+vim.filetype.add({
+  pattern = {
+    ['%.gitlab%-ci%.ya?ml'] = 'yaml.gitlab',
+  },
+})

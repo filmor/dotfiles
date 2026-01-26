@@ -24,8 +24,9 @@ return {
   },
 
   {
-    "nmac427/guess-indent.nvim",
+    "Darazaki/indent-o-matic",
     config = true,
+    lazy = false,
   },
 
   {
@@ -46,11 +47,11 @@ return {
           snippets = {
             opts = {
               clipboard_register = "a", -- use the 'a' register for snippets
-            }
-          }
-        }
-      }
-    }
+            },
+          },
+        },
+      },
+    },
   },
 
   -- {
