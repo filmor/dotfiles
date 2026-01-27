@@ -18,8 +18,8 @@ if ! chezmoi="$(command -v chezmoi)"; then
 	fi
 	if ! chezmoi_install_script="$(${download_cmd})"; then
 		echo "Failed to download chezmoi install script, falling back to local chezmoi-install.sh" >&2
-		if [ -f "./chezmoi-install.sh" ]; then
-			chezmoi_install_script="$(cat "$(dirname "$0")/chezmoi-install.sh")"
+		if [ -f "./bin/chezmoi-install.sh" ]; then
+			chezmoi_install_script="$(cat ./bin/chezmoi-install.sh)"
 		else
 			echo "Local chezmoi-install.sh not found." >&2
 			exit 1
@@ -33,7 +33,7 @@ fi
 script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 
 if [ "$CODER" = "true" ]; then
-	set -- init --one-shot --source="${script_dir}"
+	set -- init --one-shot --source="${script_dir}" --promptBool "Laptop=false" --promptBool "Work=true"
 else
 	set -- init --apply --source="${script_dir}"
 fi
